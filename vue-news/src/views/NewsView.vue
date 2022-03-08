@@ -1,14 +1,19 @@
 <template>
   <div>
-    <div v-for="user in this.$store.state.news">{{ user.title }}</div>
+    <div v-for="user in fetchedNews">{{ user.title }}</div>
   </div>
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js';
+import { mapGetters } from 'vuex';
 
 export default {
-
+  computed: {
+   ...mapGetters([
+     'fetchedNews'
+      ]
+    ), 
+  },
   created() {
     this.$store.dispatch('FETCH_NEWS');
 
